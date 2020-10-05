@@ -1,0 +1,23 @@
+<?php
+$MESS['SALE_HPS_KASSA'] = 'Flamix.Kassa';
+$MESS["SALE_HPS_KASSA_CASHBOX_CODE"] = "Код кассы";
+$MESS["SALE_HPS_KASSA_CASHBOX_CODE_DESC"] = "Код кассы (из личного кабинета Flamix.Kassa)";
+$MESS["SALE_HPS_KASSA_SECRET_CODE"] = "Секретный ключ кассы";
+$MESS["SALE_HPS_KASSA_SECRET_CODE_DESC"] = "Секретный ключ кассы (из личного кабинета Flamix.Kassa)";
+$MESS["SALE_HPS_KASSA_TEST_SECRET_CODE"] = "Тестовый секретный ключ кассы";
+$MESS["SALE_HPS_KASSA_TEST_SECRET_CODE_DESC"] = "Тестовый секретный ключ кассы (из личного кабинета Flamix.Kassa)";
+$MESS["SALE_HPS_KASSA_API_KEY"] = "API ключ пользователя";
+$MESS["SALE_HPS_KASSA_API_KEY_DESC"] = "API ключ пользователя (из личного кабинета Flamix.Kassa)";
+$MESS["SALE_HPS_KASSA_PAYMENT_ID"] = "Код заказа (ID)";
+$MESS["CONNECT_SETTINGS_KASSA"]='Настройки платежной системы';
+$MESS["SALE_HPS_KASSA_SHOULD_PAY"] = "Сумма к оплате";
+$MESS["SALE_HPS_KASSA_PAYMENT_DATE"] = "Дата создания заказа";
+$MESS["SALE_HPS_KASSA_IS_TEST"] = "Тестовый режим";
+$MESS["SALE_HPS_KASSA_CHANGE_STATUS_PAY"] = "Автоматически оплачивать заказ при получении успешного статуса оплаты";
+$MESS["SALE_HPS_KASSA_PAYMENT_TYPE"] = "Тип платёжной системы";
+$MESS["SALE_HPS_KASSA_BUYER_ID"] = "Код покупателя";
+$MESS["SALE_HPS_KASSA_BUYER_EMAIL"] = "Email покупателя";
+$MESS["SALE_HPS_KASSA_RETURN"] = "Возвраты платежей не поддерживаются";
+$MESS["SALE_HPS_KASSA_RESTRICTION"] = "Ограничение по сумме платежей зависит от способа оплаты, который выберет покупатель";
+$MESS["SALE_HPS_KASSA_COMMISSION"] = "Без комисси для покупателя";
+$MESS["KASSA_DDESCR"] = "<a href=\"https://kassa.flamix.solutions/\">Flamix.Kassa</a>";
