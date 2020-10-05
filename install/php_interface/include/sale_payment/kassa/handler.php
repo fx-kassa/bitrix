@@ -10,8 +10,6 @@ use Bitrix\Main\Type\DateTime;
 use Bitrix\Main\Web\HttpClient;
 use Bitrix\Sale\{BusinessValue, Order, PaySystem, Payment, PriceMaths};
 use Bitrix\Main\Loader;
-use Flamix\Base\Log;
-
 Loc::loadMessages(__FILE__);
 
 /**
@@ -63,7 +61,7 @@ class kassaHandler extends PaySystem\ServiceHandler
             throw new Exception(Loc::getMessage("SALE_HPS_KASSA_BAD_SUM"));
         }
             
-        $order = Order::load($payment->getId());
+        $order = $payment->getOrder();
 
         $kassa = new \Flamix\Kassa\API( $this->getBusinessValue($payment, 'CASHBOX_CODE') );
 
@@ -81,7 +79,7 @@ class kassaHandler extends PaySystem\ServiceHandler
      */
     public static function getIndicativeFields()
     {
-        return ['cashbox_code'];
+        return ['cashbox_code', 'order_id'];
     }
 
     /**
@@ -106,6 +104,10 @@ class kassaHandler extends PaySystem\ServiceHandler
      */
     public function getPaymentIdFromRequest(Request $request)
     {
+        if ($request->get('order_id') === null) {
+            return false;
+        }
+
         $order=\Bitrix\Sale\Order::load($request->get('order_id'));
         foreach($order->getPaymentCollection() as $payment){
             $l[]=$payment->getField("ID");
@@ -175,7 +177,7 @@ class kassaHandler extends PaySystem\ServiceHandler
         Loader::includeModule( "teil.kassa" );
 
         try {
-            $kassa = new \Flamix\Kassa\API( $request->get('cashbox_code'), $this->getBusinessValue($payment, 'API_KEY') );
+            $kassa = new \Flamix\Kassa\API( $request->get('cashbox_code') );
             $isCheckSuccess = $kassa
                 ->setSecretKey($this->getBusinessValue($payment, 'TEST_SECRET_CODE'))
                 ->setTestSecretKey($this->getBusinessValue($payment, 'TEST_SECRET_CODE'))
