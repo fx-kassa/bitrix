@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fx-kassa/sdk-php.git",
-                "reference": "6b9798c80cb82f4d177f121a4fe8bbc3685b3c02"
+                "reference": "87f99a3837b4fa8617be811953744be861d88c26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fx-kassa/sdk-php/zipball/6b9798c80cb82f4d177f121a4fe8bbc3685b3c02",
-                "reference": "6b9798c80cb82f4d177f121a4fe8bbc3685b3c02",
+                "url": "https://api.github.com/repos/fx-kassa/sdk-php/zipball/87f99a3837b4fa8617be811953744be861d88c26",
+                "reference": "87f99a3837b4fa8617be811953744be861d88c26",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "source": "https://github.com/fx-kassa/sdk-php/tree/master",
                 "issues": "https://github.com/fx-kassa/sdk-php/issues"
             },
-            "time": "2020-10-02T15:09:18+00:00"
+            "time": "2020-10-07T15:06:26+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
