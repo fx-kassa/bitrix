@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fx-kassa/sdk-php.git",
-                "reference": "87f99a3837b4fa8617be811953744be861d88c26"
+                "reference": "8ad0fbd88539d1ce6a35bcabe129b38299289468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fx-kassa/sdk-php/zipball/87f99a3837b4fa8617be811953744be861d88c26",
-                "reference": "87f99a3837b4fa8617be811953744be861d88c26",
+                "url": "https://api.github.com/repos/fx-kassa/sdk-php/zipball/8ad0fbd88539d1ce6a35bcabe129b38299289468",
+                "reference": "8ad0fbd88539d1ce6a35bcabe129b38299289468",
                 "shasum": ""
             },
             "require": {
@@ -54,27 +54,27 @@
                 "source": "https://github.com/fx-kassa/sdk-php/tree/master",
                 "issues": "https://github.com/fx-kassa/sdk-php/issues"
             },
-            "time": "2020-10-07T15:06:26+00:00"
+            "time": "2020-10-16T15:09:57+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.1.1",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "7427d6f99df41cc01f33cd59832f721c150ffdf3"
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/7427d6f99df41cc01f33cd59832f721c150ffdf3",
-                "reference": "7427d6f99df41cc01f33cd59832f721c150ffdf3",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0aa74dfb41ae110835923ef10a9d803a22d50e79",
+                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.6.1",
-                "php": "^7.2.5",
+                "guzzlehttp/promises": "^1.4",
+                "guzzlehttp/psr7": "^1.7",
+                "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0"
             },
             "provide": {
@@ -82,8 +82,8 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "php-http/client-integration-tests": "dev-phpunit8",
-                "phpunit/phpunit": "^8.5.5",
+                "php-http/client-integration-tests": "^3.0",
+                "phpunit/phpunit": "^8.5.5 || ^9.3.5",
                 "psr/log": "^1.1"
             },
             "suggest": {
@@ -134,7 +134,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2020-09-30T08:51:17+00:00"
+            "time": "2020-10-10T11:47:56+00:00"
         },
         {
             "name": "guzzlehttp/promises",

@@ -62,6 +62,8 @@ class kassaHandler extends PaySystem\ServiceHandler
         }
             
         $order = $payment->getOrder();
+        $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
+        $basketItems = $basket->getBasketItems();
 
         $kassa = new \Flamix\Kassa\API( $this->getBusinessValue($payment, 'CASHBOX_CODE') );
 
@@ -70,8 +72,24 @@ class kassaHandler extends PaySystem\ServiceHandler
             ->setCurrency($order->getCurrency())
             ->setOrderId($order->getId())
             ->setPaymentType('link')
+            ->setItems($this->prepareItems($basket->getBasketItems()))
             ->getPaymentRequest();
 
+    }
+
+    public function prepareItems($items): array
+    {
+        $resItems = [];
+        foreach ($items as $basketItem) {
+            $resItems[] = [
+                'name' => iconv('CP1251','UTF-8',$basketItem->getField('NAME')),
+                'price' => number_format($basketItem->getField('PRICE'),2,".",''),
+                'quantity' => $basketItem->getQuantity(),
+                'measure' => Loc::getMessage("SALE_HPS_KASSA_MEASURE")
+            ];
+        }
+
+        return $resItems;
     }
 
     /**

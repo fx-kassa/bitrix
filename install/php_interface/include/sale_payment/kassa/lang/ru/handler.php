@@ -10,3 +10,4 @@ $MESS["SALE_HPS_KASSA_MODULE_NOT_FOUND"] = "Модуль teil.kassa не найден";
 $MESS["SALE_HPS_KASSA_INCORRECT_HASH"] = "Хеш оплаты не соответствует платежу";
 $MESS["SALE_HPS_KASSA_INCORRECT_SUM"] = "Ошибка в сумме оплаты";
 $MESS["SALE_HPS_KASSA_UNKNOWN_ERROR"] = "Неизвестная ошибка";
+$MESS["SALE_HPS_KASSA_MEASURE"] = "шт.";
