@@ -4,11 +4,11 @@ $PathInstall = str_replace("\\", "/", __FILE__);
 $PathInstall = substr($PathInstall, 0, strlen($PathInstall) - strlen("/index.php"));
 IncludeModuleLangFile($PathInstall . "/install.php");
 
-if(class_exists("teil_kassa")) return;
+if(class_exists("flamix_kassa")) return;
 
-class teil_kassa extends CModule
+class flamix_kassa extends CModule
 {
-	public $MODULE_ID = "teil.kassa";
+	public $MODULE_ID = "flamix.kassa";
 	public $MODULE_VERSION;
 	public $MODULE_VERSION_DATE;
 	public $MODULE_NAME;
@@ -21,10 +21,10 @@ class teil_kassa extends CModule
 		include(dirname(__FILE__)."/version.php");
 		$this->MODULE_VERSION = $arModuleVersion["VERSION"];
 		$this->MODULE_VERSION_DATE = $arModuleVersion["VERSION_DATE"];
-		$this->MODULE_NAME = GetMessage("teil.kassa_MODULE_NAME");
-		$this->MODULE_DESCRIPTION = GetMessage("teil.kassa_MODULE_DESC");
-		$this->PARTNER_NAME = GetMessage("teil.kassa_PARTNER_NAME");
-		$this->PARTNER_URI = GetMessage("teil.kassa_PARTNER_URI");
+		$this->MODULE_NAME = GetMessage("flamix.kassa_MODULE_NAME");
+		$this->MODULE_DESCRIPTION = GetMessage("flamix.kassa_MODULE_DESC");
+		$this->PARTNER_NAME = GetMessage("flamix.kassa_PARTNER_NAME");
+		$this->PARTNER_URI = GetMessage("flamix.kassa_PARTNER_URI");
 	}
   
 	public function DoInstall()

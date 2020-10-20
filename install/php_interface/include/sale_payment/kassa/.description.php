@@ -67,6 +67,7 @@ $data = array(
 			"INPUT" => array(
 				'TYPE' => 'Y/N'
 			),
+			'DEFAULT' => 'Y'
 		),
 		"PS_IS_TEST" => array(
 			"NAME" => Loc::getMessage("SALE_HPS_KASSA_IS_TEST"),

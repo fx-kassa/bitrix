@@ -52,18 +52,20 @@ class kassaHandler extends PaySystem\ServiceHandler
      */
     public function getPayUrl(Payment $payment)
     {
-        if (!Loader::includeModule( "teil.kassa" )) {
-            throw new Exception(Loc::getMessage("SALE_HPS_KASSA_MODULE_NOT_FOUND"));
+        if (!Loader::includeModule( "flamix.kassa" )) {
+            throw new \Exception(Loc::getMessage("SALE_HPS_KASSA_MODULE_NOT_FOUND"));
+        }
+
+        if ($this->getBusinessValue($payment, 'CASHBOX_CODE') == '') {
+            throw new \Exception(Loc::getMessage("SALE_HPS_KASSA_CASHBOX_CODE_EMPTY"));
         }
 
         $sum = roundEx($payment->getSum(), 2);
         if ($sum <= 0) {
-            throw new Exception(Loc::getMessage("SALE_HPS_KASSA_BAD_SUM"));
+            throw new \Exception(Loc::getMessage("SALE_HPS_KASSA_BAD_SUM"));
         }
             
         $order = $payment->getOrder();
-        $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
-        $basketItems = $basket->getBasketItems();
 
         $kassa = new \Flamix\Kassa\API( $this->getBusinessValue($payment, 'CASHBOX_CODE') );
 
@@ -72,19 +74,39 @@ class kassaHandler extends PaySystem\ServiceHandler
             ->setCurrency($order->getCurrency())
             ->setOrderId($order->getId())
             ->setPaymentType('link')
-            ->setItems($this->prepareItems($basket->getBasketItems()))
+            ->setItems($this->prepareItems($order))
             ->getPaymentRequest();
 
     }
 
-    public function prepareItems($items): array
+    public function prepareItems($order): array
     {
         $resItems = [];
-        foreach ($items as $basketItem) {
+
+        $basket = \Bitrix\Sale\Basket::loadItemsForOrder($order);
+
+        foreach ($basket->getBasketItems() as $basketItem) {
             $resItems[] = [
-                'name' => iconv('CP1251','UTF-8',$basketItem->getField('NAME')),
+                'name' => $basketItem->getField('NAME'),
                 'price' => number_format($basketItem->getField('PRICE'),2,".",''),
                 'quantity' => $basketItem->getQuantity(),
+                'measure' => $basketItem->getField('MEASURE_NAME')
+            ];
+        }
+        
+        if ((float)$order->getDeliveryPrice() > 0) {
+            $shipmentCollection = $order->getShipmentCollection();
+            foreach ($shipmentCollection as $shipment){
+                if ($shipment->isSystem())
+                  continue;
+                if((float)$order->getDeliveryPrice() <= 0)
+                  continue;
+                $deliveryName = $shipment->getField('DELIVERY_NAME');
+            }
+            $resItems[] = [
+                'name' => Loc::getMessage("SALE_HPS_KASSA_DELIVERY_SUM", ["#DELIVERY_NAME#"=>$deliveryName]),
+                'price' => number_format($order->getDeliveryPrice(),2,".",''),
+                'quantity' => 1,
                 'measure' => Loc::getMessage("SALE_HPS_KASSA_MEASURE")
             ];
         }
@@ -105,7 +127,7 @@ class kassaHandler extends PaySystem\ServiceHandler
      * @param $paySystemId
      * @return bool
      */
-    static  public function isMyResponse(Request $request, $paySystemId)
+    static public function isMyResponse(Request $request, $paySystemId)
     {
         return true;
     }
@@ -192,7 +214,7 @@ class kassaHandler extends PaySystem\ServiceHandler
     {
         $result = new PaySystem\ServiceResult();
 
-        Loader::includeModule( "teil.kassa" );
+        Loader::includeModule( "flamix.kassa" );
 
         try {
             $kassa = new \Flamix\Kassa\API( $request->get('cashbox_code') );
